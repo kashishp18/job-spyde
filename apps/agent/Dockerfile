@@ -1,12 +1,20 @@
-# Use /app (singular) as is standard
+FROM mcr.microsoft.com/playwright/python:v1.46.0-jammy
+
 WORKDIR /app
 
-# Copy everything from apps/agent into /app
+# Install Python requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright browsers for scraping
+RUN playwright install chromium --with-deps
+
+# Copy everything
 COPY . .
 
-# Set PYTHONPATH to the current workdir
-ENV PYTHONPATH=/app
-ENV PYTHONUNBUFFERED=1
+# Render uses the PORT environment variable
+ENV PORT=10000
+EXPOSE 10000
 
-# Run uvicorn
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Use shell form to allow environment variable expansion
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
