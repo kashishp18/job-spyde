@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/* ============================================
+   JOB SPYDE DESIGN SYSTEM
+   Obsidian Observatory (Stitch Integrated)
+   ============================================ */
+
+:root {
+  /* ── Legacy Aliases to prevent breaking changes ── */
+  --bg-deep: var(--color-bg-primary);
+  --bg-surface: var(--color-bg-secondary);
+  --bg-card: var(--color-glass-surface);
+  --aurora-1: var(--color-accent-primary);
+  --aurora-2: var(--color-soft-violet);
+  --aurora-3: var(--color-neon-teal);
+  --aurora-4: var(--color-aurora-blue);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary: var(--color-text-muted);
+  --glass-border: var(--color-glass-border);
+  --glass-border-hover: rgba(133, 173, 255, 0.3);
+  --glass-glow: var(--color-accent-glow);
+
+  /* Stitch explicit color aliases */
+  --color-primary: #85adff;
+  --color-primary-dim: #699cff;
+  --color-on-primary: #002c66;
+  --color-secondary: #69f6b8;
+  --color-secondary-dim: #58e7ab;
+  --color-tertiary: #ac8aff;
+  --color-tertiary-dim: #8455ef;
+  --color-surface-dim: #0a0e1a;
+  --color-surface-container: #141928;
+  --color-surface-container-lowest: #000000;
+  --color-outline-variant: #444756;
+  --color-on-secondary-container: #e1ffec;
+}
+
+@theme inline {
+  /* ── 1. COLOR TOKEN SYSTEM (Stitch Obsidian Observatory) ── */
+  --color-bg-primary: #0a0e1a;
+  --color-bg-secondary: #0e1320;
+  --color-glass-surface: rgba(14, 19, 32, 0.6);
+  --color-glass-border: rgba(68, 71, 86, 0.2);
+  
+  --color-accent-primary: #85adff;
+  --color-accent-hover: #699cff;
+  --color-accent-glow: rgba(133, 173, 255, 0.3);
+  
+  --color-text-primary: #e2e4f6;
+  --color-text-secondary: #a7aabb;
+  --color-text-muted: #717584;
+  
+  --color-success: #69f6b8;
+  --color-warning: #f59e0b;
+  --color-error: #ff716c;
+  
+  /* Stitch Aurora Palette */
+  --color-aurora-blue: #699cff;
+  --color-neon-teal: #69f6b8;
+  --color-soft-violet: #ac8aff;
+
+  /* ── 2. SPACING SYSTEM (4px baseline) ── */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  /* ── TYPOGRAPHY BASE ── */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  /* Shadows */
+  --shadow-glow: 0 0 20px -5px var(--color-accent-glow);
+  --shadow-glow-lg: 0 0 40px -10px var(--color-accent-glow);
+  --shadow-depth: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   BASE STYLES & TOKENS
+   ============================================ */
+
+body {
+  background-color: var(--color-bg-primary);
+  background-image: 
+    radial-gradient(circle at 0% 0%, rgba(0, 91, 196, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(105, 246, 184, 0.1) 0%, transparent 50%);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 3. TYPOGRAPHY SYSTEM ── */
+.text-hero {
+  font-size: clamp(4.5rem, 8vw, 6rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(to right, #85adff, #69f6b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-section {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-card {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.text-meta {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.text-cinematic {
+  background: linear-gradient(to right, #85adff, #69f6b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Stitch Aurora Text ── */
+.aurora-text {
+  background: linear-gradient(to right, #85adff, #69f6b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Stitch Gradient Text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #85adff, #69f6b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Effects & Backgrounds ── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  mix-blend-mode: overlay;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(133, 173, 255, 0.08), transparent 35%), 
+    radial-gradient(circle at 85% 30%, rgba(105, 246, 184, 0.06), transparent 35%);
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Component Primitives ── */
+
+/* Glass Panel — Stitch Obsidian */
+.glass-panel {
+  background: rgba(14, 19, 32, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(68, 71, 86, 0.2);
+  border-radius: 1rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel:hover {
+  border-color: rgba(133, 173, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 0 20px -5px var(--color-accent-glow);
+}
+
+/* Ghost Border — Stitch */
+.ghost-border {
+  outline: 1px solid rgba(68, 71, 86, 0.2);
+}
+
+/* Active Glow — Stitch */
+.active-glow {
+  box-shadow: 0 0 12px rgba(105, 246, 184, 0.5);
+}
+
+/* Interactive Buttons */
+.btn-primary {
+  background: linear-gradient(90deg, #85adff, #699cff);
+  color: white;
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
+  filter: brightness(1.1);
+}
+
+.magnetic-btn {
+  will-change: transform;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(68, 71, 86, 0.4);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
+/* ── Shimmer Animation ── */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
