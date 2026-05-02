@@ -1,9 +1,10 @@
 from fastapi import APIRouter
 
-from app.api.health import router as health_router
-from app.api.jobs import router as jobs_router
-from app.api.agents import router as agents_router
-from app.api.resume import router as resume_router
+# Using relative dots (.) instead of 'app.api'
+from .health import router as health_router
+from .jobs import router as jobs_router
+from .agents import router as agents_router
+from .resume import router as resume_router
 
 api_router = APIRouter()
 
